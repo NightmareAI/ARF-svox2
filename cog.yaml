@@ -1,0 +1,41 @@
+# Configuration for Cog ⚙️
+# Reference: https://github.com/replicate/cog/blob/main/docs/yaml.md
+
+build:
+  # set to true if your model requires a GPU
+  gpu: true  
+  # a list of ubuntu apt packages to install
+  system_packages:
+    - "libgl1-mesa-glx"
+    - "libglib2.0-0"
+
+  # python version in the form '3.8' or '3.8.12'
+  python_version: "3.8.8"
+  python_packages:
+    - "numpy==1.22.4"
+    - "imageio==2.19.3"
+    - "imageio-ffmpeg==0.4.7"
+    - "ipdb==0.13.9"
+    - "lpips==0.1.4"
+    - "opencv-python==4.6.0.66"
+    - "Pillow==9.1.1"
+    - "pyyaml==6.0"
+    - "tensorboard==2.9.1"
+    - "pymcubes==0.1.2"
+    - "moviepy==1.0.3"
+    - "matplotlib==3.5.2"
+    - "scipy==1.8.1"
+    - "torchvision==0.12.0"
+    - "torch==1.8.0"
+    - "tqdm==4.64.0"
+
+#  run:
+#    - "mkdir -p /root/.cache/arf-svox2/data; 
+#    - "wget https://models.nmb.ai/ARF/nerf_llff_data.zip --quiet -O - | bsdtar -xvf - -C /root/.cache/arf-svox2/data; mv /root/.cache/arf-svox2/data/nerf_llff_data /root/.cache/arf-svox2/data/llff"
+#    - "wget https://models.nmb.ai/ARF/"
+#    - "wget https://models.nmb.ai/ARF/lego_real_night_radial.tar.gz --quiet -O - | tar xz -C /root/.cache/arf-svox2/data"
+#    - "wget https://models.nmb.ai/ARF/"
+#    - "echo another command if needed"
+
+# predict.py defines how predictions are run on your model
+predict: "predict.py:Predictor"
