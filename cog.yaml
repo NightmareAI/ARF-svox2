@@ -4,6 +4,7 @@
 build:
   # set to true if your model requires a GPU
   gpu: true  
+  cuda: "10.2"
   # a list of ubuntu apt packages to install
   system_packages:
     - "libgl1-mesa-glx"
@@ -25,16 +26,16 @@ build:
     - "moviepy==1.0.3"
     - "matplotlib==3.5.2"
     - "scipy==1.8.1"
-    - "torchvision==0.12.0"
+    - "torchvision==0.9.0"
     - "torch==1.8.0"
     - "tqdm==4.64.0"
 
 #  run:
 #    - "mkdir -p /root/.cache/arf-svox2/data; 
-#    - "wget https://models.nmb.ai/ARF/nerf_llff_data.zip --quiet -O - | bsdtar -xvf - -C /root/.cache/arf-svox2/data; mv /root/.cache/arf-svox2/data/nerf_llff_data /root/.cache/arf-svox2/data/llff"
+#    - "wget https://models.nmb.ai/ARF/nerf_llff_data.zip --quiet -O /root/.cache/arf-svox2/data/llff.zip ; unzip /root/.cache/arf-svox2/data/llff.zip; rm /root/.cache/arf-svox2/data/llff.zip"
 #    - "wget https://models.nmb.ai/ARF/"
 #    - "wget https://models.nmb.ai/ARF/lego_real_night_radial.tar.gz --quiet -O - | tar xz -C /root/.cache/arf-svox2/data"
-#    - "wget https://models.nmb.ai/ARF/"
+#    - "wget https://models.nmb.ai/ARF/styles.zip --quiet -O /root/.cache/arf-svox2/styles.zip; unzip /root/.cache/arf-svox2/data/styles.zip "
 #    - "echo another command if needed"
 
 # predict.py defines how predictions are run on your model
