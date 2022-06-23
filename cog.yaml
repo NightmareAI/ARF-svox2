@@ -3,12 +3,13 @@
 
 build:
   # set to true if your model requires a GPU
-  gpu: true  
-  cuda: "10.2"
+  gpu: true
+
   # a list of ubuntu apt packages to install
   system_packages:
     - "libgl1-mesa-glx"
     - "libglib2.0-0"
+    - "unzip"
 
   # python version in the form '3.8' or '3.8.12'
   python_version: "3.8.8"
@@ -26,17 +27,18 @@ build:
     - "moviepy==1.0.3"
     - "matplotlib==3.5.2"
     - "scipy==1.8.1"
-    - "torchvision==0.9.0"
-    - "torch==1.8.0"
+    - "torchvision==0.10.0"
+    - "torch==1.9.0"
     - "tqdm==4.64.0"
+    - "icecream==2.1.2"
 
-#  run:
-#    - "mkdir -p /root/.cache/arf-svox2/data; 
-#    - "wget https://models.nmb.ai/ARF/nerf_llff_data.zip --quiet -O /root/.cache/arf-svox2/data/llff.zip ; unzip /root/.cache/arf-svox2/data/llff.zip; rm /root/.cache/arf-svox2/data/llff.zip"
-#    - "wget https://models.nmb.ai/ARF/"
-#    - "wget https://models.nmb.ai/ARF/lego_real_night_radial.tar.gz --quiet -O - | tar xz -C /root/.cache/arf-svox2/data"
-#    - "wget https://models.nmb.ai/ARF/styles.zip --quiet -O /root/.cache/arf-svox2/styles.zip; unzip /root/.cache/arf-svox2/data/styles.zip "
-#    - "echo another command if needed"
+  run:
+    - "mkdir -p /root/.cache/arf-svox2/data/custom"
+    - "wget https://models.nmb.ai/ARF/nerf_llff_data.zip --quiet -O /root/.cache/arf-svox2/data/llff.zip; unzip /root/.cache/arf-svox2/data/llff.zip -d /root/.cache/arf-svox2/data/; rm /root/.cache/arf-svox2/data/llff.zip; mv /root/.cache/arf-svox2/data/nerf_llff_data /root/.cache/arf-svox2/data/llff"
+    - "wget https://models.nmb.ai/ARF/TanksAndTempleBG.zip --quiet -O /root/.cache/arf-svox2/data/tnt.zip; unzip /root/.cache/arf-svox2/data/tnt.zip -d /root/.cache/arf-svox2/data/; rm /root/.cache/arf-svox2/data/tnt.zip; mv /root/.cache/arf-svox2/data/TanksAndTempleBG /root/.cache/arf-svox2/data/tnt"
+    - "wget https://models.nmb.ai/ARF/lego_real_night_radial.tar.gz --quiet -O - | tar xz -C /root/.cache/arf-svox2/data; mv /root/.cache/arf-svox2/data/lego_real_night_radial /root/.cache/arf-svox2/data/custom/lego"
+    - "mkdir -p /root/.cache/arf-svox2/ckpt-svox2/llff/flower ; wget https://arf.nmb.ai/ckpt_svox2/llff/flower/ckpt.npz --quiet -O /root/.cache/arf-svox2/ckpt-svox2/llff/flower/ckpt.npz"
 
 # predict.py defines how predictions are run on your model
 predict: "predict.py:Predictor"
+image: "r8.im/nightmareai/arf-svox2"
